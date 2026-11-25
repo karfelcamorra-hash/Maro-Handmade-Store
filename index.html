@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مارو بولس | شغل هاند ميد وهدايا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #ffeaf3 0%, #fff8fb 45%, #fff2f8 100%);
+      --hero-bg: #fff3f8;
+      --hero-border: #f5d2e3;
+      --card-bg: #ffffff;
+      --primary: #e03e84;
+      --primary-dark: #b52665;
+      --gold: #d49b27;
+      --text-dark: #261420;
+      --text-muted: #6e5564;
+      --border-soft: #f5d2e3;
+      --pill-bg: #fff8fb;
+      --tag-bg: #ffeaf3;
+      --model-blend: multiply;
+      --model-filter: contrast(1.05) saturate(1.04);
+      --model-mask: linear-gradient(to bottom, #000 88%, transparent 100%);
+      --lamp-glow: rgba(255, 209, 102, 0.28);
+      --bulb-color: #ffe599;
+      --bulb-shadow: 0 0 18px rgba(255, 209, 102, 0.7);
+    }
+
+    body.dark-mode {
+      --bg-gradient: radial-gradient(circle at top, #241022 0%, #120914 55%, #09040a 100%);
+      --hero-bg: rgba(34, 15, 32, 0.92);
+      --hero-border: rgba(255, 117, 173, 0.28);
+      --card-bg: #1b0d19;
+      --primary: #ff5c9d;
+      --primary-dark: #ff85b7;
+      --gold: #ffd166;
+      --text-dark: #fff4f9;
+      --text-muted: #d4b8c7;
+      --border-soft: rgba(255, 117, 173, 0.22);
+      --pill-bg: #261324;
+      --tag-bg: rgba(255, 92, 157, 0.16);
+      --model-blend: normal;
+      --model-filter:
+        drop-shadow(1px 0 0 rgba(255, 255, 255, 0.95))
+        drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.95))
+        drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.95))
+        drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
+        drop-shadow(0 0 14px rgba(255, 215, 238, 0.35));
+      --model-mask: none;
+      --lamp-glow: rgba(255, 209, 102, 0.6);
+      --bulb-color: #ffd166;
+      --bulb-shadow: 0 0 28px rgba(255, 209, 102, 0.95), 0 0 55px rgba(255, 150, 80, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.7;
+      transition: background 0.45s ease, color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    /* ================= شاشة الفتحة والدخلة الأنيقة ================= */
+    #intro-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(circle at center, #3b1332 0%, #1d0819 60%, #0e030c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      transition: opacity 0.85s ease, visibility 0.85s ease, transform 0.85s ease;
+    }
+
+    #intro-splash.hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    .intro-card {
+      max-width: 480px;
+      width: 100%;
+      padding: 36px 24px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 150, 195, 0.35);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(224, 62, 132, 0.25);
+      animation: introPop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes introPop {
+      0% { opacity: 0; transform: translateY(24px) scale(0.94); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .intro-crown {
+      font-size: 3rem;
+      display: inline-block;
+      animation: crownFloat 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 14px rgba(255, 209, 102, 0.7));
+    }
+
+    @keyframes crownFloat {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-7px) rotate(3deg); }
+    }
+
+    .intro-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(3rem, 8vw, 4.3rem);
+      background: linear-gradient(135deg, #ffffff 10%, #ff9ec7 55%, #ffd166 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      margin: 6px 0;
+    }
+
+    .intro-sub {
+      color: #ffd6e7;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .intro-verse {
+      color: #ffd166;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .intro-loader {
+      width: 180px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      margin: 0 auto 18px;
+      overflow: hidden;
+    }
+
+    .intro-loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff5c9d, #ffd166);
+      border-radius: 999px;
+      animation: loadProgress 2.2s ease forwards;
+    }
+
+    @keyframes loadProgress {
+      to { width: 100%; }
+    }
+
+    .intro-enter-btn {
+      background: linear-gradient(135deg, #e03e84, #b52665);
+      color: #fff;
+      border: none;
+      padding: 10px 26px;
+      border-radius: 999px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(224, 62, 132, 0.45);
+      transition: transform 0.2s;
+    }
+
+    .intro-enter-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ================= زاوية اللمبة والأزرار العمودية على الشمال ================= */
+    .left-corner-stack {
+      position: fixed;
+      top: 0;
+      left: 16px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .desk-lamp-widget {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      transform-origin: top center;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .lamp-cord-top {
+      width: 3px;
+      height: 18px;
+      background: linear-gradient(to bottom, #8c6d7a, #d49b27);
+    }
+
+    .lamp-shade {
+      width: 64px;
+      height: 32px;
+      background: linear-gradient(135deg, #e03e84, #8f1d4f);
+      border-radius: 34px 34px 10px 10px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 3px;
+    }
+
+    .lamp-shade::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      width: 16px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 6px 6px 0 0;
+    }
+
+    .lamp-bulb {
+      width: 18px;
+      height: 11px;
+      border-radius: 0 0 12px 12px;
+      background: var(--bulb-color);
+      box-shadow: var(--bulb-shadow);
+      transition: all 0.35s ease;
+    }
+
+    .lamp-light-cone {
+      position: fixed;
+      top: 48px;
+      left: 48px;
+      width: 280px;
+      height: 280px;
+      pointer-events: none;
+      background: radial-gradient(circle at top left, var(--lamp-glow), transparent 72%);
+      transform: translate(-25%, -10%);
+      z-index: 1199;
+      transition: opacity 0.4s ease;
+    }
+
+    .pull-chain-handle {
+      cursor: grab;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px 4px;
+      touch-action: none;
+    }
+
+    .pull-chain-handle:active {
+      cursor: grabbing;
+    }
+
+    .pull-string {
+      width: 3px;
+      height: 36px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--gold) 0px,
+        var(--gold) 5px,
+        rgba(212, 155, 39, 0.35) 5px,
+        rgba(212, 155, 39, 0.35) 8px
+      );
+      transition: height 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pull-chain-handle.dragging .pull-string {
+      transition: none;
+    }
+
+    .pull-knob {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff2b2, #c48714);
+      border: 2px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .pull-chain-handle:hover .pull-knob,
+    .pull-chain-handle.dragging .pull-knob {
+      transform: scale(1.22);
+    }
+
+    .lamp-hint {
+      margin-top: 2px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .corner-vertical-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .corner-action-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-soft);
+      background: var(--card-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .corner-action-btn:hover {
+      transform: scale(1.08);
+      border-color: var(--primary);
+    }
+
+    .corner-action-btn.plus-btn {
+      background: linear-gradient(135deg, #e03e84, #b52665);
+      color: #fff;
+      border-color: transparent;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .corner-action-btn.minus-btn {
+      background: var(--pill-bg);
+      color: #ff4d79;
+      border-color: rgba(255, 77, 121, 0.45);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .corner-action-btn.minus-btn.active-delete {
+      background: #d9265a;
+      color: #fff;
+      border-color: #d9265a;
+    }
+
+    .corner-action-btn.undo-btn {
+      display: none;
+      background: linear-gradient(135deg, #d49b27, #b37d12);
+      color: #fff;
+      border-color: transparent;
+      font-size: 1.05rem;
+    }
+
+    .corner-action-btn.undo-btn.visible {
+      display: inline-flex;
+    }
+
+    .corner-finish-delete-btn {
+      display: none;
+      border: none;
+      border-radius: 999px;
+      padding: 5px 11px;
+      background: #16a34a;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(22, 163, 74, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .corner-finish-delete-btn:hover {
+      transform: scale(1.06);
+      background: #15803d;
+    }
+
+    body.delete-mode-active .corner-finish-delete-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ================= شريط علوي وهيدر ================= */
+    .top-bar {
+      background: linear-gradient(90deg, #b52665, #e03e84, #b52665);
+      color: #fff;
+      text-align: center;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    header.hero {
+      max-width: 1120px;
+      margin: 24px auto 10px;
+      padding: 20px 28px 0;
+      background: var(--hero-bg);
+      border: 2px solid var(--hero-border);
+      border-radius: 28px;
+      box-shadow: 0 14px 36px rgba(224, 62, 132, 0.12);
+      overflow: hidden;
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .hero-layout {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-model-wrap {
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: transparent;
+      padding: 8px 12px 0;
+    }
+
+    .hero-model-wrap img {
+      height: 315px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      mix-blend-mode: var(--model-blend);
+      filter: var(--model-filter);
+      -webkit-mask-image: var(--model-mask);
+      mask-image: var(--model-mask);
+      transition: filter 0.35s ease;
+    }
+
+    .hero-info {
+      text-align: center;
+      padding: 12px 0 32px;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .brand-crown {
+      font-size: 2rem;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      color: var(--primary);
+      line-height: 1.15;
+    }
+
+    .brand-tagline {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border-soft);
+      color: var(--primary-dark);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .blessing-quote {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .hero-location {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .hero-contact {
+      margin-top: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      direction: ltr;
+    }
+
+    .hero-quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .hero-pill-btn {
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e03e84, #b52665);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(224, 62, 132, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .hero-pill-btn.secondary {
+      background: var(--pill-bg);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-soft);
+      box-shadow: none;
+    }
+
+    .hero-pill-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 18px 80px;
+    }
+
+    .features-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .feature-badge {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 12px 14px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      box-shadow: 0 6px 18px rgba(224, 62, 132, 0.05);
+    }
+
+    .controls-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(224, 62, 132, 0.06);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border-soft);
+      background: var(--pill-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 14px;
+      transition: 0.25s;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(224, 62, 132, 0.14);
+    }
+
+    .filter-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--pill-bg);
+      color: var(--text-dark);
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(224, 62, 132, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.35s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 16px 32px rgba(224, 62, 132, 0.14);
+    }
+
+    /* ================= وميض أخضر لمدة 7 ثوانٍ عند فتح اللينك ================= */
+    @keyframes greenPulse7s {
+      0%, 100% {
+        border-color: #16a34a;
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.45), 0 0 24px rgba(34, 197, 94, 0.55);
+      }
+      50% {
+        border-color: #4ade80;
+        box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.22), 0 0 36px rgba(34, 197, 94, 0.85);
+      }
+    }
+
+    .product-card.green-highlight-7s {
+      animation: greenPulse7s 1s ease-in-out 7;
+      border-color: #22c55e;
+    }
+
+    .card-delete-minus-btn {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #d9265a;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(217, 38, 90, 0.45);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    body.delete-mode-active .card-delete-minus-btn {
+      display: inline-flex;
+    }
+
+    .card-delete-minus-btn:hover {
+      transform: scale(1.12);
+      background: #b01744;
+    }
+
+    .new-item-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff2e7e, #ff7a00);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-left: 6px;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 12px rgba(255, 46, 126, 0.32);
+    }
+
+    .product-cat {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--tag-bg);
+      padding: 3px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .offer-badge-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #6b4300;
+      background: linear-gradient(135deg, #ffe599, #ffd166);
+      padding: 3px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-right: 6px;
+      margin-bottom: 8px;
+    }
+
+    .product-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-details {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .product-img-box {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      background: var(--pill-bg);
+      margin-bottom: 14px;
+      cursor: zoom-in;
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .product-card:hover .product-img-box img {
+      transform: scale(1.04);
+    }
+
+    .card-actions-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .order-btn {
+      flex: 1;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: linear-gradient(135deg, #e03e84, #b52665);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 10px 12px;
+      border-radius: 13px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .order-btn:hover {
+      opacity: 0.94;
+      transform: scale(1.02);
+    }
+
+    .copy-link-btn {
+      border: 1.5px solid var(--border-soft);
+      background: var(--pill-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 10px 12px;
+      border-radius: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .copy-link-btn:hover {
+      border-color: #16a34a;
+      transform: translateY(-1px);
+    }
+
+    .copy-link-btn.copied {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #fff;
+    }
+
+    /* ================= قسم العروض الأول للزوار ================= */
+    .offers-section {
+      margin-bottom: 28px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--gold);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 10px 28px rgba(212, 155, 39, 0.12);
+    }
+
+    .offers-section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .empty-offers-box {
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 16px;
+      background: var(--pill-bg);
+      border: 1px dashed var(--border-soft);
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    /* ================= لوحة إضافات المطور والعروض ================= */
+    .dev-panel-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--pill-bg);
+      border: 1.5px dashed var(--primary);
+      display: none;
+    }
+
+    .dev-panel-box.open {
+      display: block;
+      animation: fadeSlideIn 0.28s ease;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dev-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dev-panel-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .dev-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dev-field-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .dev-input,
+    .dev-select {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-soft);
+      background: var(--card-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .dev-input:focus,
+    .dev-select:focus {
+      border-color: var(--primary);
+    }
+
+    .offer-only-field {
+      display: none;
+    }
+
+    .offer-only-field.visible {
+      display: block;
+    }
+
+    .dev-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .dev-buttons-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dev-submit-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #e03e84, #b52665);
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .dev-submit-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .dev-cancel-add-btn {
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 10px 18px;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .dev-cancel-add-btn:hover {
+      border-color: #ff4d79;
+      color: #ff4d79;
+    }
+
+    .dev-lock-btn {
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 8px 14px;
+      background: var(--card-bg);
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .dev-status-msg {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ================= نافذة إدخال الباسورد مع زر إظهار/إخفاء ================= */
+    .password-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 4, 12, 0.78);
+      backdrop-filter: blur(7px);
+      z-index: 9500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .password-modal.open {
+      display: flex;
+    }
+
+    .password-card {
+      width: 100%;
+      max-width: 390px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .password-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .password-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .password-field-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-pass-btn {
+      flex-shrink: 0;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-soft);
+      background: var(--pill-bg);
+      color: var(--text-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .toggle-pass-btn:hover,
+    .toggle-pass-btn.revealed {
+      border-color: var(--primary);
+      background: var(--tag-bg);
+      color: var(--primary-dark);
+    }
+
+    .password-error {
+      color: #ff4d79;
+      font-size: 0.84rem;
+      font-weight: 700;
+      min-height: 22px;
+      margin-top: 8px;
+    }
+
+    .password-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .password-cancel-btn {
+      border: 1px solid var(--border-soft);
+      background: var(--pill-bg);
+      color: var(--text-dark);
+      border-radius: 12px;
+      padding: 9px 18px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .poster-section {
+      margin-top: 34px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(224, 62, 132, 0.07);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .poster-section h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+    }
+
+    .poster-box {
+      max-width: 540px;
+      margin: 0 auto 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid var(--border-soft);
+      cursor: zoom-in;
+    }
+
+    .poster-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .social-btn {
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+      background: #25d366;
+      transition: transform 0.2s;
+    }
+
+    .social-btn.fb { background: #1877f2; }
+    .social-btn.ig { background: #d62976; }
+    .social-btn.tt { background: #1c1c24; }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1100;
+      background: #25d366;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.05);
+    }
+
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 4, 12, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox-modal.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      text-align: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 18px;
+      border: 2px solid #ff85b7;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .lightbox-caption {
+      color: #fff;
+      font-weight: 700;
+      margin-top: 10px;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 14px 36px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .developer-box {
+      margin: 14px auto 0;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 6px 18px rgba(224, 62, 132, 0.08);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .developer-name {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .dev-wa-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      background: #25d366;
+      color: #fff;
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      direction: ltr;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .dev-wa-link:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    @media (max-width: 650px) {
+      .left-corner-stack {
+        left: 10px;
+      }
+      .lamp-shade {
+        width: 54px;
+        height: 27px;
+      }
+      .corner-action-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.05rem;
+      }
+      header.hero {
+        padding: 16px 16px 0;
+      }
+      .hero-layout {
+        gap: 14px;
+      }
+      .hero-model-wrap img {
+        height: 255px;
+      }
+      .hero-info {
+        padding-bottom: 22px;
+      }
+      .floating-wa {
+        bottom: 14px;
+        right: 14px;
+        padding: 10px 15px;
+        font-size: 0.86rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة الفتحة والدخلة قبل عرض الموقع -->
+  <div id="intro-splash">
+    <div class="intro-card">
+      <div class="intro-crown">👑</div>
+      <h1 class="intro-title">مارو بولس</h1>
+      <p class="intro-sub">شغل هاند ميد • كل ما تحتاجه في مكان واحد</p>
+      <p class="intro-verse">♥ بركة الرب هي تغني ولا يزداد معها تعب ♥</p>
+      <div class="intro-loader">
+        <div class="intro-loader-bar"></div>
+      </div>
+      <button type="button" class="intro-enter-btn" onclick="closeIntro()">ادخل المتجر ✨</button>
+    </div>
+  </div>
+
+  <div class="lamp-light-cone" id="lamp-light-cone"></div>
+
+  <!-- زاوية الشمال: لمبة الوضع الداكن وتحتها أزرار الإضافة والحذف والاسترجاع والانتهاء -->
+  <div class="left-corner-stack">
+    <aside class="desk-lamp-widget" id="desk-lamp-widget" aria-label="مصباح تبديل الإضاءة">
+      <div class="lamp-cord-top"></div>
+      <div class="lamp-shade">
+        <div class="lamp-bulb"></div>
+      </div>
+      <div
+        class="pull-chain-handle"
+        id="pull-chain-handle"
+        title="امسك الخيط وشده لتحت لتغيير الإضاءة"
+      >
+        <span class="pull-string" id="pull-string"></span>
+        <span class="pull-knob"></span>
+      </div>
+      <span class="lamp-hint" id="lamp-hint">شد الخيط لتحت 🌙</span>
+    </aside>
+
+    <div class="corner-vertical-btns">
+      <button
+        type="button"
+        class="corner-action-btn plus-btn"
+        onclick="requestDevMode('addon')"
+        title="إضافات المطور (+)"
+        aria-label="إضافات المطور"
+      >+</button>
+
+      <button
+        type="button"
+        class="corner-action-btn"
+        onclick="requestDevMode('offer')"
+        title="إضافة عروض (🎁)"
+        aria-label="إضافة عروض"
+      >🎁</button>
+
+      <button
+        type="button"
+        class="corner-action-btn minus-btn"
+        id="corner-minus-btn"
+        onclick="requestDevMode('delete')"
+        title="حذف منتجات أو عروض (-)"
+        aria-label="حذف منتجات أو عروض"
+      >-</button>
+
+      <button
+        type="button"
+        class="corner-action-btn undo-btn"
+        id="corner-undo-btn"
+        onclick="restoreLastDeleted()"
+        title="استرجاع آخر عنصر تم حذفه"
+        aria-label="استرجاع آخر عنصر تم حذفه"
+      >↩️</button>
+
+      <button
+        type="button"
+        class="corner-finish-delete-btn"
+        id="corner-finish-delete-btn"
+        onclick="finishDeleteMode()"
+        title="إنهاء وضع الحذف"
+        aria-label="إنهاء وضع الحذف"
+      >انتهاء</button>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    ✨ بركة الرب هي تغني ولا يزداد معها تعب • المنيا • 01287109959 ✨
+  </div>
+
+  <header class="hero">
+    <div class="hero-layout">
+      <div class="hero-model-wrap">
+        <img id="hero-model-img" src="60262.jpg" alt="مارو بولس" />
+      </div>
+      <div class="hero-info">
+        <span class="brand-crown">👑</span>
+        <h1 class="brand-name">مارو بولس</h1>
+        <div class="brand-tagline">شغل هاند ميد • كل ما تحتاجه في مكان واحد</div>
+        <p class="blessing-quote">♥ بركة الرب هي تغني ولا يزداد معها تعب ♥</p>
+        <p class="hero-location">📍 المنيا • تواصل أونلاين على الواتساب - إنستا - فيسبوك - تيك توك</p>
+        <p class="hero-contact">📞 01287109959</p>
+        <div class="hero-quick-actions">
+          <a href="#offers-section" class="hero-pill-btn">العروض 🎁</a>
+          <a href="#products-section" class="hero-pill-btn secondary">المنتجات ✨</a>
+          <a href="https://www.tiktok.com/@maroooo6610" target="_blank" class="hero-pill-btn secondary">تيك توك 🎵</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="products-section">
+    <section class="features-strip">
+      <div class="feature-badge">🎨 تنفيذ حسب الطلب والاسم</div>
+      <div class="feature-badge">📏 جميع المقاسات متوفرة</div>
+      <div class="feature-badge">📍 المنيا وتوصيل أونلاين</div>
+      <div class="feature-badge">🎁 تغليف وبوكسات هدايا</div>
+    </section>
+
+    <!-- قسم العروض الأول للزوار -->
+    <section class="offers-section" id="offers-section">
+      <h2 class="offers-section-title">🎁 عروض مارو بولس</h2>
+      <div class="products-grid" id="offers-grid"></div>
+      <div class="empty-offers-box" id="empty-offers-box">لا يوجد عروض متاحه الان</div>
+    </section>
+
+    <section class="controls-box">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="ابحث عن منتج... (مثال: ميدالية خشب وجلد، تابلوهات، مجات، برفانات، هودي)"
+        oninput="renderProducts()"
+      />
+
+      <div class="filter-btns" id="filter-btns">
+        <button class="filter-btn active" data-cat="الكل" onclick="setCategory('الكل', this)">الكل</button>
+        <button class="filter-btn" data-cat="عروض" onclick="setCategory('عروض', this)">عروض</button>
+        <button class="filter-btn" data-cat="ملابس وشنط" onclick="setCategory('ملابس وشنط', this)">ملابس وشنط</button>
+        <button class="filter-btn" data-cat="مجّات وطباعة" onclick="setCategory('مجّات وطباعة', this)">مجّات وطباعة</button>
+        <button class="filter-btn" data-cat="تابلوهات ومرايات" onclick="setCategory('تابلوهات ومرايات', this)">تابلوهات ومرايات</button>
+        <button class="filter-btn" data-cat="هدايا ومناسبات" onclick="setCategory('هدايا ومناسبات', this)">هدايا ومناسبات</button>
+        <button class="filter-btn" data-cat="إكسسوارات وحفر" onclick="setCategory('إكسسوارات وحفر', this)">إكسسوارات وحفر</button>
+      </div>
+
+      <!-- نموذج الإضافة الموحد (إضافات المطور أو العروض) -->
+      <div class="dev-panel-box" id="dev-panel-box">
+        <div class="dev-panel-header">
+          <h3 class="dev-panel-title" id="dev-panel-title">🛠️ إضافات المطور</h3>
+          <button type="button" class="dev-lock-btn" onclick="lockDevPanel()">إغلاق 🔒</button>
+        </div>
+
+        <form id="add-work-form" onsubmit="handleAddWork(event)">
+          <div class="dev-form-grid">
+            <div>
+              <label class="dev-field-label" for="new-work-title">الاسم / عنوان العرض</label>
+              <input
+                type="text"
+                id="new-work-title"
+                class="dev-input"
+                placeholder="مثال: بوكس هدايا باسمك"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="dev-field-label" for="new-work-cat">القسم</label>
+              <select id="new-work-cat" class="dev-select">
+                <option value="عروض">عروض</option>
+                <option value="ملابس وشنط">ملابس وشنط</option>
+                <option value="مجّات وطباعة">مجّات وطباعة</option>
+                <option value="تابلوهات ومرايات">تابلوهات ومرايات</option>
+                <option value="هدايا ومناسبات" selected>هدايا ومناسبات</option>
+                <option value="إكسسوارات وحفر">إكسسوارات وحفر</option>
+              </select>
+            </div>
+
+            <div class="offer-only-field" id="offer-badge-field">
+              <label class="dev-field-label" for="new-offer-badge">تفاصيل العرض / الخصم</label>
+              <input
+                type="text"
+                id="new-offer-badge"
+                class="dev-input"
+                placeholder="مثال: خصم 20% أو 2 بسعر 1"
+              />
+            </div>
+
+            <div>
+              <label class="dev-field-label" for="new-work-img-name">اسم الصورة أو رابطها</label>
+              <input
+                type="text"
+                id="new-work-img-name"
+                class="dev-input"
+                placeholder="مثال: prod25.jpg أو رابط صورة"
+              />
+            </div>
+
+            <div>
+              <label class="dev-field-label" for="new-work-img-file">أو اختر صورة من جهازك</label>
+              <input
+                type="file"
+                id="new-work-img-file"
+                class="dev-input"
+                accept="image/*"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="dev-field-label" for="new-work-desc">وصف مختصر</label>
+            <input
+              type="text"
+              id="new-work-desc"
+              class="dev-input"
+              placeholder="اكتب تفاصيل المنتج أو العرض والمقاسات المتوفرة..."
+              required
+            />
+          </div>
+
+          <div class="dev-actions-row">
+            <div class="dev-buttons-group">
+              <button type="submit" class="dev-submit-btn" id="dev-submit-btn">إضافة للمعرض ✨</button>
+              <button
+                type="button"
+                class="dev-cancel-add-btn"
+                id="dev-cancel-add-btn"
+                onclick="cancelCurrentAdd()"
+              >إلغاء الإضافة</button>
+            </div>
+          </div>
+          <div class="dev-status-msg" id="dev-status-msg"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="products-grid" id="products-grid"></section>
+
+    <section class="poster-section">
+      <h2>📌 الصورة المجمّعة الكاملة</h2>
+      <div class="poster-box" onclick="openLightbox('60249.jpg', 'منيو مارو بولس الكامل — شغل هاند ميد')">
+        <img src="60249.jpg" alt="منيو مارو بولس شغل هاند ميد" />
+      </div>
+      <p>للطلب والاستفسار: 01287109959</p>
+      <div class="social-links">
+        <a id="general-wa" href="#" target="_blank" class="social-btn">💬 واتساب</a>
+        <a href="https://www.tiktok.com/@maroooo6610" target="_blank" class="social-btn tt">🎵 تيك توك</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn fb">📘 فيسبوك</a>
+        <a href="https://instagram.com" target="_blank" class="social-btn ig">📸 إنستا</a>
+      </div>
+    </section>
+  </main>
+
+  <a id="floating-wa" href="#" target="_blank" class="floating-wa">💬 اطلب الآن</a>
+
+  <!-- نافذة الباسورد الموحدة لإضافات المطور والعروض والحذف مع زر إظهار الباسورد -->
+  <div class="password-modal" id="password-modal" onclick="closePasswordModal()">
+    <div class="password-card" onclick="event.stopPropagation()">
+      <h3 id="password-modal-title">🔐 إضافات المطور</h3>
+      <p>اكتب كلمة المرور للمتابعة</p>
+      <div class="password-field-row">
+        <input
+          type="password"
+          id="dev-password-input"
+          class="dev-input"
+          placeholder="اكتب الباسورد..."
+          onkeydown="if(event.key==='Enter'){event.preventDefault();verifyDevPassword();}"
+        />
+        <button
+          type="button"
+          class="toggle-pass-btn"
+          id="toggle-pass-btn"
+          onclick="togglePasswordVisibility()"
+          title="إظهار أو إخفاء الباسورد أثناء الكتابة"
+        >
+          <span id="toggle-pass-icon">👁️</span>
+          <span id="toggle-pass-label">إظهار</span>
+        </button>
+      </div>
+      <div class="password-error" id="password-error"></div>
+      <div class="password-btns">
+        <button type="button" class="dev-submit-btn" onclick="verifyDevPassword()">دخول</button>
+        <button type="button" class="password-cancel-btn" onclick="closePasswordModal()">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="" />
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <footer>
+    <div>مارو بولس — شغل هاند ميد • المنيا • 01287109959 ❤️</div>
+    <div class="developer-box">
+      <span>💻 تطوير وتصميم: <strong class="developer-name">كيرلس مينا</strong></span>
+      <span>•</span>
+      <a
+        class="dev-wa-link"
+        href="https://wa.me/201206382570?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%20%D9%83%D9%8A%D8%B1%D9%84%D8%B3%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D8%AA%20%D9%85%D8%B9%D8%A7%D9%83%20%D9%85%D9%86%20%D9%85%D9%88%D9%82%D8%B9%20%D9%85%D8%A7%D8%B1%D9%88%20%D8%A8%D9%88%D9%84%D8%B3"
+        target="_blank"
+        title="تواصل واتساب مع المطور كيرلس مينا"
+      >
+        💬 01206382570
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "201287109959";
+    const DEV_PASS_EXPECTED = "sona maro";
+    const PRODUCTS_STORAGE_KEY = "marobolusActiveProductsV1";
+    const OFFERS_STORAGE_KEY = "marobolusActiveOffersV1";
+    const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+    const GREEN_FLASH_DURATION_MS = 7000;
+
+    /* ================= إزالة خلفية الحواف البيضاء فقط والحفاظ على الصورة كاملة ================= */
+    function cleanWhiteEdgesKeepSubject() {
+      const img = document.getElementById("hero-model-img");
+      if (!img || img.dataset.cleaned === "1") return;
+
+      const process = () => {
+        if (img.dataset.cleaned === "1") return;
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        if (!w || !h) return;
+
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const imageData = ctx.getImageData(0, 0, w, h);
+          const data = imageData.data;
+          const total = w * h;
+
+          const isOuterWhite = (idx) => {
+            const p = idx * 4;
+            return data[p] >= 248 && data[p + 1] >= 248 && data[p + 2] >= 248;
+          };
+
+          const visited = new Uint8Array(total);
+          const queue = new Int32Array(total);
+          let head = 0;
+          let tail = 0;
+
+          const push = (x, y) => {
+            if (x < 0 || x >= w || y < 0 || y >= h) return;
+            const idx = y * w + x;
+            if (visited[idx]) return;
+            visited[idx] = 1;
+            if (isOuterWhite(idx)) {
+              queue[tail++] = idx;
+            }
+          };
+
+          for (let x = 0; x < w; x++) {
+            push(x, 0);
+            push(x, h - 1);
+          }
+          for (let y = 0; y < h; y++) {
+            push(0, y);
+            push(w - 1, y);
+          }
+
+          while (head < tail) {
+            const idx = queue[head++];
+            data[idx * 4 + 3] = 0;
+            const x = idx % w;
+            const y = (idx - x) / w;
+            push(x + 1, y);
+            push(x - 1, y);
+            push(x, y + 1);
+            push(x, y - 1);
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          img.dataset.cleaned = "1";
+          img.src = canvas.toDataURL("image/png");
+        } catch (e) {}
+      };
+
+      if (img.complete && img.naturalWidth > 0) {
+        process();
+      } else {
+        img.addEventListener("load", process, { once: true });
+      }
+    }
+
+    cleanWhiteEdgesKeepSubject();
+
+    /* ================= التحكم في شاشة الفتحة والدخلة ================= */
+    const introSplash = document.getElementById("intro-splash");
+    function closeIntro() {
+      if (introSplash) introSplash.classList.add("hide");
+      triggerLinkedItemGreenFlash();
+    }
+    setTimeout(closeIntro, 2400);
+
+    /* ================= سحب الخيط الفعلي للمصباح ================= */
+    const lampWidget = document.getElementById("desk-lamp-widget");
+    const pullHandle = document.getElementById("pull-chain-handle");
+    const pullString = document.getElementById("pull-string");
+    const lampHint = document.getElementById("lamp-hint");
+
+    const BASE_STRING_HEIGHT = 36;
+    const PULL_TRIGGER_DELTA = 28;
+    let isPulling = false;
+    let startPointerY = 0;
+    let currentDeltaY = 0;
+    let hasTriggeredInThisPull = false;
+
+    function playClickSound(isDark) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(isDark ? 520 : 760, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(isDark ? 240 : 420, ctx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      } catch (e) {}
+    }
+
+    function updateLampLabel() {
+      if (!lampHint) return;
+      const dark = document.body.classList.contains("dark-mode");
+      lampHint.textContent = dark ? "شد الخيط لتحت ☀️" : "شد الخيط لتحت 🌙";
+    }
+
+    function toggleLampTheme() {
+      const willBeDark = !document.body.classList.contains("dark-mode");
+      document.body.classList.toggle("dark-mode", willBeDark);
+      try {
+        localStorage.setItem("marobolusTheme", willBeDark ? "dark" : "light");
+      } catch (e) {}
+      playClickSound(willBeDark);
+      updateLampLabel();
+    }
+
+    function onPullStart(clientY) {
+      isPulling = true;
+      startPointerY = clientY;
+      currentDeltaY = 0;
+      hasTriggeredInThisPull = false;
+      if (pullHandle) pullHandle.classList.add("dragging");
+    }
+
+    function onPullMove(clientY) {
+      if (!isPulling) return;
+      currentDeltaY = Math.max(0, Math.min(68, clientY - startPointerY));
+      if (pullString) pullString.style.height = (BASE_STRING_HEIGHT + currentDeltaY) + "px";
+
+      const tilt = Math.min(6, currentDeltaY * 0.08);
+      if (lampWidget) lampWidget.style.transform = `rotate(${tilt}deg)`;
+
+      if (currentDeltaY >= PULL_TRIGGER_DELTA && !hasTriggeredInThisPull) {
+        hasTriggeredInThisPull = true;
+        toggleLampTheme();
+      }
+    }
+
+    function onPullEnd() {
+      if (!isPulling) return;
+      isPulling = false;
+      if (pullHandle) pullHandle.classList.remove("dragging");
+
+      if (!hasTriggeredInThisPull && currentDeltaY < 6) {
+        if (pullString) pullString.style.height = (BASE_STRING_HEIGHT + 28) + "px";
+        toggleLampTheme();
+        setTimeout(() => {
+          if (pullString) pullString.style.height = BASE_STRING_HEIGHT + "px";
+        }, 180);
+      } else {
+        if (pullString) pullString.style.height = BASE_STRING_HEIGHT + "px";
+      }
+      if (lampWidget) lampWidget.style.transform = "rotate(0deg)";
+    }
+
+    if (pullHandle) {
+      pullHandle.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        onPullStart(e.clientY);
+      });
+      pullHandle.addEventListener("touchstart", (e) => {
+        if (e.touches[0]) onPullStart(e.touches[0].clientY);
+      }, { passive: true });
+    }
+    window.addEventListener("mousemove", (e) => onPullMove(e.clientY));
+    window.addEventListener("mouseup", onPullEnd);
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches[0]) onPullMove(e.touches[0].clientY);
+    }, { passive: true });
+    window.addEventListener("touchend", onPullEnd);
+
+    try {
+      if (localStorage.getItem("marobolusTheme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    } catch (e) {}
+    updateLampLabel();
+
+    /* ================= المنتجات والعروض ونسخ اللينك والوميض الأخضر 7 ثوانٍ ================= */
+    const defaultProducts = [
+      { id: "p1", img: "prod1.jpg", cat: "ملابس وشنط", title: "تيشرتات وهودي مطبوع عليها", desc: "طباعة عالية الجودة بتصاميم كابلز وهدايا حسب الطلب." },
+      { id: "p2", img: "prod2.jpg", cat: "مجّات وطباعة", title: "مجّات سحرية ومجّات عادية", desc: "مجّات مطبوعة بصور أو جمل مبهجة للصباح والهدايا." },
+      { id: "p3", img: "prod3.jpg", cat: "إكسسوارات وحفر", title: "ميدالية خشب وجلد", desc: "شغل هاند ميد مميز للصحبة والهدايا الشخصية." },
+      { id: "p4", img: "prod4.jpg", cat: "تابلوهات ومرايات", title: "تابلوهات بكل المقاسات", desc: "مقاسات: 20×30 • 30×40 • 40×50 • 50×60 • 50×70 • 50×90." },
+      { id: "p5", img: "prod5.jpg", cat: "تابلوهات ومرايات", title: "مرايات دائرية وقلب", desc: "مرايات بإضاءة أنيقة تناسب الغرف والتسريحات." },
+      { id: "p6", img: "prod6.jpg", cat: "إكسسوارات وحفر", title: "ساعات يد بصورة وساعات حائط", desc: "تخصيص بصور وذكريات بتصميم أنيق ومميز." },
+      { id: "p7", img: "prod7.jpg", cat: "إكسسوارات وحفر", title: "أقلام مكتوب عليها الأسامي بتنور", desc: "أقلام مضيئة مطبوع أو محفور عليها الأسامي." },
+      { id: "p8", img: "prod8.jpg", cat: "تابلوهات ومرايات", title: "مسند مكتب ومخدات برسومات الوشوش", desc: "مساند مكتبية ومخدات بتصاميم ورسومات مخصصة." },
+      { id: "p9", img: "prod9.jpg", cat: "هدايا ومناسبات", title: "برفانات تركيب", desc: "تركيبات عطرية ثابتة ومميزة تناسب كل الأذواق." },
+      { id: "p10", img: "prod10.jpg", cat: "هدايا ومناسبات", title: "بوكسات أفراح وعيد ميلاد وكل حاجة", desc: "تنسيق بوكسات هدايا متكاملة للمناسبات السعيدة." },
+      { id: "p11", img: "prod11.jpg", cat: "هدايا ومناسبات", title: "تزيينات عيد ميلاد", desc: "مستلزمات وديكورات تضيف بهجة لأعياد الميلاد." },
+      { id: "p12", img: "prod12.jpg", cat: "هدايا ومناسبات", title: "كروت", desc: "كروت معايدة ورسائل بتصاميم رقيقة." },
+      { id: "p13", img: "prod13.jpg", cat: "تابلوهات ومرايات", title: "طيلات زجاج", desc: "طيلات زجاج بتصميمات راقية للمناسبات والهدايا." },
+      { id: "p14", img: "prod14.jpg", cat: "مجّات وطباعة", title: "مجّات سمارت كابل", desc: "مجّات عملية مع كابل لتدفئة المشروب." },
+      { id: "p15", img: "prod15.jpg", cat: "إكسسوارات وحفر", title: "حصالات خشب", desc: "حصالات خشبية بتصميمات محفزة للادخار." },
+      { id: "p16", img: "prod16.jpg", cat: "ملابس وشنط", title: "لبسة أطفال الأسبوع", desc: "أطقم أطفال لطيفة لكل يوم في الأسبوع." },
+      { id: "p17", img: "prod17.jpg", cat: "ملابس وشنط", title: "محافظ طباعة خام ومن غير طباعة", desc: "خيارات متعددة تناسب الاستخدام اليومي والهدايا." },
+      { id: "p18", img: "prod18.jpg", cat: "هدايا ومناسبات", title: "الصورة التركيب بتاعة الأطفال", desc: "تصميمات تركيب مرحة ومميزة للأطفال." },
+      { id: "p19", img: "prod19.jpg", cat: "مجّات وطباعة", title: "جرابات طباعة وشغل هاند ميد", desc: "جرابات موبايلات مطبوعة وهاند ميد حسب الطلب." },
+      { id: "p20", img: "prod20.jpg", cat: "إكسسوارات وحفر", title: "ماركات حروف وأرقام كل المقاسات", desc: "حروف وأرقام بارزة ومضيئة بكل المقاسات." },
+      { id: "p21", img: "prod21.jpg", cat: "ملابس وشنط", title: "شنط طباعة ونطبع عليها", desc: "شنط خام ومطبوعة للهدايا والتسوق." },
+      { id: "p22", img: "prod22.jpg", cat: "هدايا ومناسبات", title: "كروت أسبوع والكوبايات الأسبوع وشموع", desc: "مجموعات أسبوعية متكاملة مع كروت وشموع عطرية." },
+      { id: "p23", img: "prod23.jpg", cat: "إكسسوارات وحفر", title: "ولّاعة عليها الأسامي", desc: "ولّاعات مخصصة بالأسامي حسب الطلب." },
+      { id: "p24", img: "prod24.jpg", cat: "إكسسوارات وحفر", title: "ودّيل حفر وسلسلة العيون والانسيالا", desc: "إكسسوارات رقيقة بحفر أسامي ورموز مميزة." }
+    ];
+
+    function loadStoredList(key, fallbackList) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw === null) return [...fallbackList];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [...fallbackList];
+      } catch (e) {
+        return [...fallbackList];
+      }
+    }
+
+    function saveStoredList(key, list) {
+      try {
+        localStorage.setItem(key, JSON.stringify(list));
+      } catch (e) {}
+    }
+
+    function isItemNewWithin24Hours(item) {
+      if (!item || typeof item.createdAt !== "number") return false;
+      return (Date.now() - item.createdAt) < TWENTY_FOUR_HOURS_MS;
+    }
+
+    let products = loadStoredList(PRODUCTS_STORAGE_KEY, defaultProducts);
+    let offers = loadStoredList(OFFERS_STORAGE_KEY, []);
+    let deletedHistory = [];
+    let activeCategory = "الكل";
+    let currentAddMode = "addon"; // "addon" | "offer"
+    let pendingAction = "addon"; // "addon" | "offer" | "delete"
+    let isDevUnlocked = false;
+    let isDeleteModeActive = false;
+    let greenFlashTimerId = null;
+    let hasTriggeredGreenFlash = false;
+
+    const cornerMinusBtn = document.getElementById("corner-minus-btn");
+    const cornerUndoBtn = document.getElementById("corner-undo-btn");
+
+    function getItemDomId(item, isOffer, realIndex) {
+      const safeId = item && item.id ? String(item.id) : `${isOffer ? "offer" : "prod"}_${realIndex}`;
+      return `item-${safeId}`;
+    }
+
+    function buildDirectItemUrl(item, isOffer, realIndex) {
+      const domId = getItemDomId(item, isOffer, realIndex);
+      const base = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+      return `${base}#${domId}`;
+    }
+
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {}
+      }
+      const tempInput = document.createElement("textarea");
+      tempInput.value = text;
+      tempInput.style.position = "fixed";
+      tempInput.style.opacity = "0";
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        return true;
+      } catch (e) {
+        document.body.removeChild(tempInput);
+        return false;
+      }
+    }
+
+    function startGreenPulseOnElement(el) {
+      if (!el) return;
+      if (greenFlashTimerId) {
+        clearTimeout(greenFlashTimerId);
+        greenFlashTimerId = null;
+      }
+      document.querySelectorAll(".product-card.green-highlight-7s").forEach((c) => {
+        c.classList.remove("green-highlight-7s");
+      });
+
+      void el.offsetWidth;
+      el.classList.add("green-highlight-7s");
+
+      greenFlashTimerId = setTimeout(() => {
+        el.classList.remove("green-highlight-7s");
+        greenFlashTimerId = null;
+      }, GREEN_FLASH_DURATION_MS);
+    }
+
+    function triggerLinkedItemGreenFlash() {
+      const hash = window.location.hash ? window.location.hash.slice(1) : "";
+      if (!hash || !hash.startsWith("item-")) return;
+
+      const targetId = hash.slice(5);
+      const inOffers = offers.some((o) => String(o.id) === targetId);
+      const inProducts = products.some((p) => String(p.id) === targetId);
+
+      if ((inOffers || inProducts) && activeCategory !== "الكل" && !(inOffers && activeCategory === "عروض")) {
+        activeCategory = "الكل";
+        document.querySelectorAll(".filter-btn").forEach((b) => {
+          b.classList.toggle("active", b.dataset.cat === "الكل");
+        });
+        renderProducts();
+      }
+
+      const cardEl = document.getElementById(hash);
+      if (!cardEl) return;
+
+      hasTriggeredGreenFlash = true;
+      cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      startGreenPulseOnElement(cardEl);
+    }
+
+    window.addEventListener("hashchange", () => {
+      hasTriggeredGreenFlash = false;
+      triggerLinkedItemGreenFlash();
+    });
+
+    function updateUndoButtonVisibility() {
+      if (!cornerUndoBtn) return;
+      cornerUndoBtn.classList.toggle("visible", deletedHistory.length > 0);
+    }
+
+    function setDeleteMode(enabled) {
+      isDeleteModeActive = enabled;
+      document.body.classList.toggle("delete-mode-active", enabled);
+      if (cornerMinusBtn) {
+        cornerMinusBtn.classList.toggle("active-delete", enabled);
+      }
+    }
+
+    function finishDeleteMode() {
+      setDeleteMode(false);
+      if (devPanelBox && devPanelTitle && devPanelTitle.textContent.includes("وضع الحذف")) {
+        devPanelBox.classList.remove("open");
+      }
+      if (devStatusMsg) {
+        devStatusMsg.textContent = "تم إنهاء وضع الحذف.";
+      }
+    }
+
+    function deleteCardItem(kind, index) {
+      if (!isDeleteModeActive) return;
+
+      if (kind === "offer") {
+        const target = offers[index];
+        if (!target) return;
+        offers.splice(index, 1);
+        saveStoredList(OFFERS_STORAGE_KEY, offers);
+        deletedHistory.push({ kind: "offer", item: target, index });
+        renderOffers();
+      } else {
+        const target = products[index];
+        if (!target) return;
+        products.splice(index, 1);
+        saveStoredList(PRODUCTS_STORAGE_KEY, products);
+        deletedHistory.push({ kind: "product", item: target, index });
+        renderProducts();
+      }
+
+      updateUndoButtonVisibility();
+      if (devStatusMsg) {
+        devStatusMsg.textContent = "تم الحذف — يمكنك الضغط على زر الاسترجاع ↩️ أو «انتهاء».";
+      }
+    }
+
+    function restoreLastDeleted() {
+      if (!deletedHistory.length) return;
+      const last = deletedHistory.pop();
+      if (last.kind === "offer") {
+        const insertAt = Math.min(last.index, offers.length);
+        offers.splice(insertAt, 0, last.item);
+        saveStoredList(OFFERS_STORAGE_KEY, offers);
+        renderOffers();
+      } else {
+        const insertAt = Math.min(last.index, products.length);
+        products.splice(insertAt, 0, last.item);
+        saveStoredList(PRODUCTS_STORAGE_KEY, products);
+        renderProducts();
+      }
+      updateUndoButtonVisibility();
+      if (devStatusMsg) {
+        devStatusMsg.textContent = `تم استرجاع «${last.item.title}» بنجاح ↩️`;
+      }
+    }
+
+    function setCategory(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderProducts();
+      if (cat === "عروض") {
+        const offersSec = document.getElementById("offers-section");
+        if (offersSec) offersSec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    function makeWaLink(text) {
+      const msg = encodeURIComponent(text);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    }
+
+    function openLightbox(src, caption) {
+      const imgEl = document.getElementById("lightbox-img");
+      const capEl = document.getElementById("lightbox-caption");
+      const modEl = document.getElementById("lightbox-modal");
+      if (imgEl) imgEl.src = src;
+      if (capEl) capEl.textContent = caption;
+      if (modEl) modEl.classList.add("open");
+    }
+
+    function closeLightbox() {
+      const modEl = document.getElementById("lightbox-modal");
+      if (modEl) modEl.classList.remove("open");
+    }
+
+    function buildProductCard(item, isOffer, realIndex) {
+      const card = document.createElement("article");
+      card.className = "product-card";
+      card.id = getItemDomId(item, isOffer, realIndex);
+
+      const minusBtn = document.createElement("button");
+      minusBtn.type = "button";
+      minusBtn.className = "card-delete-minus-btn";
+      minusBtn.title = "حذف هذا العنصر";
+      minusBtn.setAttribute("aria-label", "حذف هذا العنصر");
+      minusBtn.textContent = "-";
+      minusBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        deleteCardItem(isOffer ? "offer" : "product", realIndex);
+      });
+      card.appendChild(minusBtn);
+
+      const topWrap = document.createElement("div");
+
+      if (isItemNewWithin24Hours(item)) {
+        const newBadge = document.createElement("span");
+        newBadge.className = "new-item-badge";
+        newBadge.textContent = "جديد";
+        topWrap.appendChild(newBadge);
+      }
+
+      const catSpan = document.createElement("span");
+      catSpan.className = "product-cat";
+      catSpan.textContent = item.cat;
+      topWrap.appendChild(catSpan);
+
+      if (isOffer && item.offerBadge) {
+        const badgeSpan = document.createElement("span");
+        badgeSpan.className = "offer-badge-pill";
+        badgeSpan.textContent = `🎁 ${item.offerBadge}`;
+        topWrap.appendChild(badgeSpan);
+      }
+
+      const titleEl = document.createElement("h3");
+      titleEl.className = "product-title";
+      titleEl.textContent = item.title;
+
+      const descEl = document.createElement("p");
+      descEl.className = "product-details";
+      descEl.textContent = item.desc;
+
+      const imgBox = document.createElement("div");
+      imgBox.className = "product-img-box";
+
+      const imgEl = document.createElement("img");
+      const initialSrc = item.img || "60249.jpg";
+      imgEl.src = initialSrc;
+      imgEl.alt = item.title;
+
+      let resolvedSrc = initialSrc;
+      imgEl.addEventListener("error", function handleImgError() {
+        if (imgEl.dataset.fallbackDone === "1") return;
+        imgEl.dataset.fallbackDone = "1";
+        resolvedSrc = "60249.jpg";
+        imgEl.src = "60249.jpg";
+      }, { once: true });
+
+      imgBox.addEventListener("click", () => {
+        openLightbox(resolvedSrc, item.title);
+      });
+
+      imgBox.appendChild(imgEl);
+      topWrap.appendChild(titleEl);
+      topWrap.appendChild(descEl);
+      topWrap.appendChild(imgBox);
+
+      const actionsRow = document.createElement("div");
+      actionsRow.className = "card-actions-row";
+
+      const orderBtn = document.createElement("a");
+      orderBtn.className = "order-btn";
+      orderBtn.target = "_blank";
+      const directUrl = buildDirectItemUrl(item, isOffer, realIndex);
+      const waText = isOffer
+        ? `أهلاً مارو بولس، حابب أطلب عرض: ${item.title}${item.offerBadge ? ` (${item.offerBadge})` : ""}\nاللينك: ${directUrl}`
+        : `أهلاً مارو بولس، حابب أطلب / أستفسر عن: ${item.title}\nاللينك: ${directUrl}`;
+      orderBtn.href = makeWaLink(waText);
+      orderBtn.textContent = "اطلب واتساب 💬";
+
+      const copyBtn = document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.className = "copy-link-btn";
+      copyBtn.title = "نسخ لينك هذا العنصر";
+      copyBtn.textContent = "نسخ اللينك 🔗";
+      copyBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        await copyTextToClipboard(directUrl);
+        copyBtn.classList.add("copied");
+        copyBtn.textContent = "تم النسخ ✓";
+        setTimeout(() => {
+          copyBtn.classList.remove("copied");
+          copyBtn.textContent = "نسخ اللينك 🔗";
+        }, 1800);
+      });
+
+      actionsRow.appendChild(orderBtn);
+      actionsRow.appendChild(copyBtn);
+
+      card.appendChild(topWrap);
+      card.appendChild(actionsRow);
+      return card;
+    }
+
+    function renderOffers() {
+      const offersGrid = document.getElementById("offers-grid");
+      const emptyBox = document.getElementById("empty-offers-box");
+      if (!offersGrid || !emptyBox) return;
+
+      const searchEl = document.getElementById("search-input");
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : "";
+
+      const matchingOffers = offers
+        .map((offer, idx) => ({ offer, idx }))
+        .filter(({ offer }) => {
+          if (!query) return true;
+          return (
+            offer.title.toLowerCase().includes(query) ||
+            offer.desc.toLowerCase().includes(query) ||
+            offer.cat.toLowerCase().includes(query) ||
+            (offer.offerBadge && offer.offerBadge.toLowerCase().includes(query))
+          );
+        });
+
+      offersGrid.innerHTML = "";
+      if (!matchingOffers.length) {
+        emptyBox.style.display = "block";
+        return;
+      }
+
+      emptyBox.style.display = "none";
+      matchingOffers.forEach(({ offer, idx }) => {
+        offersGrid.appendChild(buildProductCard(offer, true, idx));
+      });
+    }
+
+    function renderProducts() {
+      const searchEl = document.getElementById("search-input");
+      const grid = document.getElementById("products-grid");
+      if (!grid) return;
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : "";
+
+      const entries =
+        activeCategory === "عروض"
+          ? []
+          : products
+              .map((item, idx) => ({ item, idx }))
+              .filter(({ item }) => {
+                const matchCat = activeCategory === "الكل" || item.cat === activeCategory;
+                const matchText =
+                  item.title.toLowerCase().includes(query) ||
+                  item.desc.toLowerCase().includes(query) ||
+                  item.cat.toLowerCase().includes(query);
+                return matchCat && matchText;
+              });
+
+      grid.innerHTML = "";
+      entries.forEach(({ item, idx }) => {
+        grid.appendChild(buildProductCard(item, false, idx));
+      });
+
+      renderOffers();
+
+      const generalLink = makeWaLink("أهلاً مارو بولس، حابب أتواصل معاكم بخصوص المنتجات.");
+      const genWa = document.getElementById("general-wa");
+      const fltWa = document.getElementById("floating-wa");
+      if (genWa) genWa.href = generalLink;
+      if (fltWa) fltWa.href = generalLink;
+
+      if (!hasTriggeredGreenFlash && introSplash && introSplash.classList.contains("hide")) {
+        triggerLinkedItemGreenFlash();
+      }
+    }
+
+    setInterval(() => {
+      renderProducts();
+    }, 60000);
+
+    /* ================= التحكم في الباسورد وزر إظهاره والإضافة والحذف والاسترجاع ================= */
+    const passwordModal = document.getElementById("password-modal");
+    const passwordModalTitle = document.getElementById("password-modal-title");
+    const devPasswordInput = document.getElementById("dev-password-input");
+    const togglePassBtn = document.getElementById("toggle-pass-btn");
+    const togglePassIcon = document.getElementById("toggle-pass-icon");
+    const togglePassLabel = document.getElementById("toggle-pass-label");
+    const passwordError = document.getElementById("password-error");
+    const devPanelBox = document.getElementById("dev-panel-box");
+    const devPanelTitle = document.getElementById("dev-panel-title");
+    const devSubmitBtn = document.getElementById("dev-submit-btn");
+    const devCancelAddBtn = document.getElementById("dev-cancel-add-btn");
+    const offerBadgeField = document.getElementById("offer-badge-field");
+    const devStatusMsg = document.getElementById("dev-status-msg");
+
+    function clearAddFormInputs() {
+      const titleInput = document.getElementById("new-work-title");
+      const badgeInput = document.getElementById("new-offer-badge");
+      const descInput = document.getElementById("new-work-desc");
+      const imgNameInput = document.getElementById("new-work-img-name");
+      const imgFileInput = document.getElementById("new-work-img-file");
+      if (titleInput) titleInput.value = "";
+      if (badgeInput) badgeInput.value = "";
+      if (descInput) descInput.value = "";
+      if (imgNameInput) imgNameInput.value = "";
+      if (imgFileInput) imgFileInput.value = "";
+    }
+
+    function cancelCurrentAdd() {
+      clearAddFormInputs();
+      if (devPanelBox) devPanelBox.classList.remove("open");
+      if (devStatusMsg) devStatusMsg.textContent = "";
+    }
+
+    function setPasswordVisibility(revealed) {
+      if (!devPasswordInput) return;
+      devPasswordInput.type = revealed ? "text" : "password";
+      if (togglePassBtn) togglePassBtn.classList.toggle("revealed", revealed);
+      if (togglePassIcon) togglePassIcon.textContent = revealed ? "🙈" : "👁️";
+      if (togglePassLabel) togglePassLabel.textContent = revealed ? "إخفاء" : "إظهار";
+    }
+
+    function togglePasswordVisibility() {
+      if (!devPasswordInput) return;
+      const shouldReveal = devPasswordInput.type === "password";
+      setPasswordVisibility(shouldReveal);
+      devPasswordInput.focus();
+    }
+
+    function applyPanelMode(mode) {
+      currentAddMode = mode;
+      const isOffer = mode === "offer";
+
+      if (devPanelTitle) {
+        devPanelTitle.textContent = isOffer ? "🎁 إضافة عرض جديد" : "🛠️ إضافات المطور";
+      }
+      if (devSubmitBtn) {
+        devSubmitBtn.textContent = isOffer ? "إضافة العرض 🎁" : "إضافة للمعرض ✨";
+      }
+      if (devCancelAddBtn) {
+        devCancelAddBtn.textContent = isOffer ? "إلغاء إضافة العرض" : "إلغاء الإضافة";
+      }
+      if (offerBadgeField) {
+        offerBadgeField.classList.toggle("visible", isOffer);
+      }
+      if (devPanelBox) {
+        devPanelBox.classList.add("open");
+      }
+      if (devStatusMsg) {
+        devStatusMsg.textContent = isOffer
+          ? "أدخل بيانات العرض الجديد وسيظهر في قسم العروض بشارة «جديد» لمدة 24 ساعة."
+          : "أدخل بيانات الشغل الجديد وسيظهر فوراً بشارة «جديد» لمدة 24 ساعة.";
+      }
+      setTimeout(() => {
+        const tInput = document.getElementById("new-work-title");
+        if (tInput) tInput.focus();
+      }, 60);
+    }
+
+    function executeActionAfterAuth(action) {
+      if (action === "delete") {
+        setDeleteMode(!isDeleteModeActive);
+        if (devPanelBox && isDeleteModeActive) {
+          devPanelBox.classList.add("open");
+          if (devPanelTitle) devPanelTitle.textContent = "🗑️ وضع الحذف مفعل (-)";
+          if (devStatusMsg) {
+            devStatusMsg.textContent = "اضغط علامة (-) فوق أي منتج أو عرض لحذفه، واستخدم (↩️) للاسترجاع أو «انتهاء».";
+          }
+        } else if (devStatusMsg) {
+          devStatusMsg.textContent = "تم إيقاف وضع الحذف.";
+        }
+        return;
+      }
+
+      setDeleteMode(false);
+      applyPanelMode(action);
+    }
+
+    function requestDevMode(action) {
+      pendingAction = action;
+      if (isDevUnlocked) {
+        executeActionAfterAuth(action);
+        return;
+      }
+
+      if (passwordModalTitle) {
+        if (action === "offer") passwordModalTitle.textContent = "🔐 إضافة عرض جديد";
+        else if (action === "delete") passwordModalTitle.textContent = "🔐 تفعيل وضع الحذف (-)";
+        else passwordModalTitle.textContent = "🔐 إضافات المطور";
+      }
+      setPasswordVisibility(false);
+      if (passwordError) passwordError.textContent = "";
+      if (devPasswordInput) devPasswordInput.value = "";
+      if (passwordModal) passwordModal.classList.add("open");
+      setTimeout(() => {
+        if (devPasswordInput) devPasswordInput.focus();
+      }, 60);
+    }
+
+    function closePasswordModal() {
+      setPasswordVisibility(false);
+      if (passwordModal) passwordModal.classList.remove("open");
+      if (passwordError) passwordError.textContent = "";
+    }
+
+    function verifyDevPassword() {
+      const entered = devPasswordInput ? devPasswordInput.value.trim().toLowerCase() : "";
+      if (entered === DEV_PASS_EXPECTED.toLowerCase()) {
+        isDevUnlocked = true;
+        closePasswordModal();
+        executeActionAfterAuth(pendingAction);
+      } else {
+        if (passwordError) passwordError.textContent = "كلمة المرور غير صحيحة، جرّب مرة أخرى.";
+      }
+    }
+
+    function lockDevPanel() {
+      isDevUnlocked = false;
+      setDeleteMode(false);
+      clearAddFormInputs();
+      if (devPanelBox) devPanelBox.classList.remove("open");
+      if (devStatusMsg) devStatusMsg.textContent = "";
+    }
+
+    function readImageFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handleAddWork(event) {
+      event.preventDefault();
+      const titleInput = document.getElementById("new-work-title");
+      const catSelect = document.getElementById("new-work-cat");
+      const badgeInput = document.getElementById("new-offer-badge");
+      const descInput = document.getElementById("new-work-desc");
+      const imgNameInput = document.getElementById("new-work-img-name");
+      const imgFileInput = document.getElementById("new-work-img-file");
+
+      const title = titleInput ? titleInput.value.trim() : "";
+      const cat = catSelect ? catSelect.value : "هدايا ومناسبات";
+      const offerBadge = badgeInput ? badgeInput.value.trim() : "";
+      const desc = descInput ? descInput.value.trim() : "";
+      let imgSrc = (imgNameInput && imgNameInput.value.trim()) ? imgNameInput.value.trim() : "60249.jpg";
+
+      if (imgFileInput && imgFileInput.files && imgFileInput.files[0]) {
+        try {
+          imgSrc = await readImageFileAsDataUrl(imgFileInput.files[0]);
+        } catch (err) {
+          if (devStatusMsg) devStatusMsg.textContent = "تعذر قراءة الصورة المختارة، تم استخدام الاسم/الرابط.";
+        }
+      }
+
+      const nowTimestamp = Date.now();
+
+      if (currentAddMode === "offer" || cat === "عروض") {
+        const newOffer = {
+          id: "off_" + nowTimestamp,
+          img: imgSrc,
+          cat: cat === "عروض" ? "عروض" : cat,
+          title,
+          desc,
+          offerBadge,
+          createdAt: nowTimestamp
+        };
+        offers.push(newOffer);
+        saveStoredList(OFFERS_STORAGE_KEY, offers);
+        renderOffers();
+        if (devStatusMsg) devStatusMsg.textContent = `تمت إضافة العرض «${title}» بشارة جديد لمدة 24 ساعة! 🎁`;
+        const offersSec = document.getElementById("offers-section");
+        if (offersSec) offersSec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        const newItem = {
+          id: "prd_" + nowTimestamp,
+          img: imgSrc,
+          cat,
+          title,
+          desc,
+          createdAt: nowTimestamp
+        };
+        products.push(newItem);
+        saveStoredList(PRODUCTS_STORAGE_KEY, products);
+        renderProducts();
+        if (devStatusMsg) devStatusMsg.textContent = `تمت إضافة «${title}» بشارة جديد لمدة 24 ساعة!`;
+      }
+
+      clearAddFormInputs();
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>

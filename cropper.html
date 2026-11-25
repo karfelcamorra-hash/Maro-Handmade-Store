@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أداة قص صور ماروبولس</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #fff6fa;
+      color: #261420;
+      padding: 20px;
+      text-align: center;
+    }
+    .box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px solid #f5d2e3;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(224, 62, 132, 0.08);
+    }
+    h1 { color: #e03e84; font-size: 1.6rem; margin-bottom: 10px; }
+    p.tip { color: #6e5564; font-size: 0.95rem; margin-bottom: 16px; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    select, input[type="file"], button {
+      font-family: 'Cairo', sans-serif;
+      padding: 9px 14px;
+      border-radius: 12px;
+      border: 1px solid #e7b8cf;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    button {
+      background: #e03e84;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #b52665; }
+    canvas {
+      max-width: 100%;
+      border: 2px dashed #e03e84;
+      border-radius: 14px;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .preview-area {
+      margin-top: 16px;
+    }
+    .preview-area img {
+      max-width: 240px;
+      border-radius: 12px;
+      border: 1px solid #f5d2e3;
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>✂️ أداة قص صور منتجات ماروبولس</h1>
+    <p class="tip">ارفع صورة <b>60249.jpg</b>، اختار المنتج من القائمة، اسحب بالماوس على الصورة لتحديد الجزء المطلوب، واضغط تحميل الصورة.</p>
+
+    <div class="controls">
+      <input type="file" id="img-upload" accept="image/*" />
+      <select id="prod-select">
+        <option value="prod1.jpg">prod1.jpg — تيشرتات وهودي مطبوع عليها</option>
+        <option value="prod2.jpg">prod2.jpg — مجّات سحرية ومجّات عادية</option>
+        <option value="prod3.jpg">prod3.jpg — ميدالية خشب وجلد</option>
+        <option value="prod4.jpg">prod4.jpg — تابلوهات بكل المقاسات</option>
+        <option value="prod5.jpg">prod5.jpg — مرايات دائرية وقلب</option>
+        <option value="prod6.jpg">prod6.jpg — ساعات يد بصورة وساعات حائط</option>
+        <option value="prod7.jpg">prod7.jpg — أقلام مكتوب عليها الأسامي بتنور</option>
+        <option value="prod8.jpg">prod8.jpg — مسند مكتب ومخدات برسومات الوشوش</option>
+        <option value="prod9.jpg">prod9.jpg — برفانات تركيب</option>
+        <option value="prod10.jpg">prod10.jpg — بوكسات أفراح وعيد ميلاد</option>
+        <option value="prod11.jpg">prod11.jpg — تزيينات عيد ميلاد</option>
+        <option value="prod12.jpg">prod12.jpg — كروت</option>
+        <option value="prod13.jpg">prod13.jpg — طيلات زجاج</option>
+        <option value="prod14.jpg">prod14.jpg — مجّات سمارت كابل</option>
+        <option value="prod15.jpg">prod15.jpg — حصالات خشب</option>
+        <option value="prod16.jpg">prod16.jpg — لبسة أطفال الأسبوع</option>
+        <option value="prod17.jpg">prod17.jpg — محافظ طباعة خام ومن غير طباعة</option>
+        <option value="prod18.jpg">prod18.jpg — الصورة التركيب بتاعة الأطفال</option>
+        <option value="prod19.jpg">prod19.jpg — جرابات طباعة وشغل هاند ميد</option>
+        <option value="prod20.jpg">prod20.jpg — ماركات حروف وأرقام كل المقاسات</option>
+        <option value="prod21.jpg">prod21.jpg — شنط طباعة ونطبع عليها</option>
+        <option value="prod22.jpg">prod22.jpg — كروت أسبوع والكوبايات الأسبوع وشموع</option>
+        <option value="prod23.jpg">prod23.jpg — ولّاعة عليها الأسامي</option>
+        <option value="prod24.jpg">prod24.jpg — ودّيل حفر وسلسلة العيون والانسيالا</option>
+      </select>
+      <button onclick="downloadCrop()">⬇️ تحميل الصورة المقصوصة</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="preview-area">
+      <div id="crop-status"></div>
+      <img id="preview-img" style="display:none;" alt="معاينة القص" />
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const upload = document.getElementById('img-upload');
+    const select = document.getElementById('prod-select');
+    const previewImg = document.getElementById('preview-img');
+    const statusEl = document.getElementById('crop-status');
+
+    let sourceImg = new Image();
+    let isDragging = false;
+    let startX = 0, startY = 0, currX = 0, currY = 0;
+
+    function loadImage(src) {
+      sourceImg = new Image();
+      sourceImg.crossOrigin = "anonymous";
+      sourceImg.onload = () => {
+        const maxW = 820;
+        const scale = sourceImg.width > maxW ? maxW / sourceImg.width : 1;
+        canvas.width = Math.round(sourceImg.width * scale);
+        canvas.height = Math.round(sourceImg.height * scale);
+        draw();
+      };
+      sourceImg.src = src;
+    }
+
+    loadImage("60249.jpg");
+
+    upload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => loadImage(ev.target.result);
+      reader.readAsDataURL(file);
+    });
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: ((clientX - rect.left) / rect.width) * canvas.width,
+        y: ((clientY - rect.top) / rect.height) * canvas.height
+      };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (sourceImg.complete && sourceImg.naturalWidth) {
+        ctx.drawImage(sourceImg, 0, 0, canvas.width, canvas.height);
+      }
+      const x = Math.min(startX, currX);
+      const y = Math.min(startY, currY);
+      const w = Math.abs(currX - startX);
+      const h = Math.abs(currY - startY);
+      if (w > 4 && h > 4) {
+        ctx.save();
+        ctx.strokeStyle = "#e03e84";
+        ctx.lineWidth = 3;
+        ctx.fillStyle = "rgba(224, 62, 132, 0.18)";
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+        ctx.restore();
+      }
+    }
+
+    function startDrag(e) {
+      const pos = getPos(e);
+      startX = currX = pos.x;
+      startY = currY = pos.y;
+      isDragging = true;
+    }
+
+    function moveDrag(e) {
+      if (!isDragging) return;
+      const pos = getPos(e);
+      currX = pos.x;
+      currY = pos.y;
+      draw();
+      updatePreview();
+    }
+
+    function endDrag() {
+      isDragging = false;
+      updatePreview();
+    }
+
+    canvas.addEventListener('mousedown', startDrag);
+    canvas.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', endDrag);
+
+    canvas.addEventListener('touchstart', startDrag, { passive: true });
+    canvas.addEventListener('touchmove', moveDrag, { passive: true });
+    window.addEventListener('touchend', endDrag);
+
+    function getCroppedDataUrl() {
+      const x = Math.min(startX, currX);
+      const y = Math.min(startY, currY);
+      const w = Math.abs(currX - startX);
+      const h = Math.abs(currY - startY);
+      if (w < 8 || h < 8 || !sourceImg.naturalWidth) return null;
+
+      const scaleX = sourceImg.naturalWidth / canvas.width;
+      const scaleY = sourceImg.naturalHeight / canvas.height;
+
+      const out = document.createElement('canvas');
+      out.width = Math.round(w * scaleX);
+      out.height = Math.round(h * scaleY);
+      const octx = out.getContext('2d');
+      octx.drawImage(
+        sourceImg,
+        x * scaleX,
+        y * scaleY,
+        w * scaleX,
+        h * scaleY,
+        0,
+        0,
+        out.width,
+        out.height
+      );
+      return out.toDataURL("image/jpeg", 0.92);
+    }
+
+    function updatePreview() {
+      const url = getCroppedDataUrl();
+      if (url) {
+        previewImg.src = url;
+        previewImg.style.display = "block";
+        statusEl.textContent = "جاهز للتحميل باسم: " + select.value;
+      }
+    }
+
+    function downloadCrop() {
+      const url = getCroppedDataUrl();
+      if (!url) {
+        statusEl.textContent = "اسحب بالماوس على جزء من الصورة الأول.";
+        return;
+      }
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = select.value;
+      a.click();
+    }
+  </script>
+</body>
+</html>
